@@ -12,15 +12,27 @@ public class Homepage {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
+    @FindBy (xpath = "//input[@type = 'email']")
+    public WebElement email;
+
+    @FindBy (xpath = "//input[@type = 'password']")
+    public WebElement password;
 
 
-    @FindBy (id = "search_query_top")
-    public WebElement searchBar;
 
-    public void clickOnAProduct(String name){
-        String xpath = "(//a[@title='"+name+"'])[2]";
-        Driver.getDriver().findElement(By.xpath(xpath)).click();
-    }
+
+
+//    public void clickOnAProduct(String name){
+//        String xpath = "(//a[@title='"+name+"'])[2]";
+//        Driver.getDriver().findElement(By.xpath(xpath)).click();
+//    }
+
+//    public void clickOnPlusButton(int times){
+//
+//        for (int i = 0; i < times; i++) {
+//            plusButton.click();
+//        }
+//    }
 
 
 
