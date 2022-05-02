@@ -1,12 +1,13 @@
 Feature: Preapproval
 
+
   Background: Common steps for all scenarios
     Given I log In
     When I Click on Mortgage Application
 
 
   Scenario: Verify The page
-    Then I should see the "Preapproval Details"
+  Then I should see the "Preapproval Details"
 
   Scenario: Verify The checkboxes
     Then I want to check all boxes No
