@@ -2,11 +2,17 @@ package stepDefinitions;
 
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.junit.Test;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import pages.Homepage;
 import pages.Preapproval;
+import utilities.Driver;
+import utilities.PropertyReader;
 import utilities.SeleniumUtils;
 
 import java.util.List;
@@ -18,12 +24,21 @@ public class PreapprovalDefs {
     String down;
     String prcnt;
 
+    @Given("I log In")
+    public void i_log_in() {
+        Driver.getDriver().get(PropertyReader.getProperty("url"));
+        Homepage homepage = new Homepage();
+        homepage.login();
+    }
+
+
     @When("I Click on Mortgage Application")
     public void i_click_on_mortgage_application() {
         Preapproval preapproval = new Preapproval();
         preapproval.MortgageButton.click();
         SeleniumUtils.waitFor(1);
     }
+
     @Then("I should see the {string}")
     public void i_should_see_the_preapproval_form(String form) {
         Preapproval preapproval = new Preapproval();
@@ -50,18 +65,54 @@ public class PreapprovalDefs {
         preapproval.realtorButtonY.click();
     }
 
-    @Then("I want to provide the {string} name")
-    public void i_want_to_provide_the_officers_name(String name){
-        nameG=name;
+
+    @And("I want to provide Realtors name, EPP,DPA,DPP. The following should be")
+    public void theFollowingShouldBe(List<Map<String,String>> values) {
         Preapproval preapproval = new Preapproval();
-        Faker faker = new Faker();
-        preapproval.realtorName.sendKeys(faker.name().firstName()+" "+faker.name().lastName());
+        SeleniumUtils.scroll(1,500);
+
+        for (Map<String,String> map:values){
+            nameG = map.get("Realtor");
+            estPurchP = map.get("ESTIMATED PURCHASE PRICE");
+            down = map.get("DOWN PAYMENT AMOUNT");
+            prcnt = map.get("DOWN PAYMENT PERCENTAGE");
+        }
+        SeleniumUtils.scroll(1,500);
+        preapproval.realtorName.sendKeys(nameG);
+        SeleniumUtils.waitFor(2);
+        preapproval.estPurchPrice.sendKeys(estPurchP);
+        SeleniumUtils.waitFor(2);
+        preapproval.downPaymnt.clear();
+        preapproval.downPaymnt.sendKeys(down);
+        SeleniumUtils.waitFor(2);
+        preapproval.downPaymntPercent.clear();
+        preapproval.downPaymntPercent.sendKeys(prcnt);
+        SeleniumUtils.waitFor(2);
+
+    }
+
+    @And("I want to pick {string} and verify")
+    public void iWantToPick(String arg0) {
+        Preapproval preapproval = new Preapproval();
+        SeleniumUtils.scroll(1,500);
+        Select select = new Select(preapproval.optionsFinances);
+        select.selectByValue(arg0);
+        WebElement option = select.getFirstSelectedOption();
+        Assert.assertTrue(option.getText().equals(arg0));
 
     }
 
 
-    @Then("I want to fill the {string},{string},{string}")
-    public void iWantToFillThe(String arg0, String arg1, String arg2) {
+    @And("click {string} and verify that next page contains {string}")
+    public void click(String arg0,String personalInfo) {
+        Preapproval preapproval = new Preapproval();
+        preapproval.nextButton.click();
+        SeleniumUtils.waitFor(2);
+        Assert.assertEquals(personalInfo,preapproval.pI.getText());
+    }
+
+    @Then("I want to fill {string},{string},{string}")
+    public void iWantToFill(String arg0, String arg1, String arg2) {
         Preapproval preapproval = new Preapproval();
         estPurchP = arg0;
         down = arg1;
@@ -76,72 +127,12 @@ public class PreapprovalDefs {
         preapproval.downPaymnt.sendKeys("40000");
     }
 
-
-
-    @And("The following should be")
-    public void theFollowingShouldBe(List<Map<String,String>> values) {
-        //Map<String,String> map = values.get(0);
+    @Then("I want to provide {string} name")
+    public void iWantToProvideName(String name) {
+        nameG=name;
         Preapproval preapproval = new Preapproval();
-        SeleniumUtils.scroll(1,500);
-//        nameG = map.get("Loan Officer");
-//        estPurchP = map.get("ESTIMATED PURCHASE PRICE");
-//        down = map.get("DOWN PAYMENT AMOUNT");
-//        prcnt = map.get("DOWN PAYMENT PERCENTAGE");
+        Faker faker = new Faker();
+        preapproval.realtorName.sendKeys(faker.name().firstName()+" "+faker.name().lastName());
 
-
-//        preapproval.realtorName.sendKeys(nameG);
-//        SeleniumUtils.waitFor(2);
-//        preapproval.estPurchPrice.sendKeys(estPurchP);
-//        SeleniumUtils.waitFor(2);
-//        preapproval.downPaymnt.sendKeys(down);
-//        SeleniumUtils.waitFor(2);
-//        preapproval.downPaymntPercent.sendKeys(prcnt);
-//        SeleniumUtils.waitFor(2);
-
-        for (Map<String,String> map:values){
-            nameG = map.get("Loan Officer");
-            estPurchP = map.get("ESTIMATED PURCHASE PRICE");
-            down = map.get("DOWN PAYMENT AMOUNT");
-            prcnt = map.get("DOWN PAYMENT PERCENTAGE");
-        }
-
-        preapproval.realtorName.sendKeys(nameG);
-        SeleniumUtils.waitFor(2);
-        preapproval.estPurchPrice.sendKeys(estPurchP);
-        SeleniumUtils.waitFor(2);
-        preapproval.downPaymnt.sendKeys(down);
-        SeleniumUtils.waitFor(2);
-        preapproval.downPaymntPercent.sendKeys(prcnt);
-        SeleniumUtils.waitFor(2);
-
-//        preapproval.realtorName.sendKeys(map.get("Loan Officer"));
-//        SeleniumUtils.waitFor(2);
-//        preapproval.estPurchPrice.sendKeys(map.get("ESTIMATED PURCHASE PRICE"));
-//        SeleniumUtils.waitFor(2);
-//        preapproval.downPaymnt.sendKeys(map.get("DOWN PAYMENT AMOUNT"));
-//        SeleniumUtils.waitFor(2);
-//        preapproval.downPaymntPercent.sendKeys(map.get("DOWN PAYMENT PERCENTAGE"));
-//        SeleniumUtils.waitFor(2);
-    }
-
-    @And("I want to pick {string} and verify")
-    public void iWantToPick(String arg0) {
-        Preapproval preapproval = new Preapproval();
-//        Select select = new Select(preapproval.optionsFinances);
-//       // preapproval.optionsFinances.click();
-//        SeleniumUtils.jsClick(preapproval.optionsFinances);
-//        select.selectByValue(arg0);
-//        System.out.println(arg0+" "+select);
-//        Assert.assertEquals(select,arg0);
-
-    }
-
-
-    @And("click {string} and verify that next page contains {string}")
-    public void click(String arg0,String personalInfo) {
-        Preapproval preapproval = new Preapproval();
-        preapproval.nextButton.click();
-        SeleniumUtils.waitFor(2);
-        Assert.assertEquals(personalInfo,preapproval.pI.getText());
     }
 }
