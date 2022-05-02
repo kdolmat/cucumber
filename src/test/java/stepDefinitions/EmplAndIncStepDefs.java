@@ -9,9 +9,6 @@ import pages.EmplAndIncPage;
 import utilities.Driver;
 import utilities.PropertyReader;
 
-import java.util.Collections;
-import java.util.List;
-
 public class EmplAndIncStepDefs {
 
     @Given("I am on login page")
@@ -47,7 +44,7 @@ public class EmplAndIncStepDefs {
         emplAndIncPage.position.sendKeys();
         emplAndIncPage.city.sendKeys();
         emplAndIncPage.city.sendKeys(Keys.ARROW_DOWN, Keys.END);
-        emplAndIncPage.startDate.sendKeys();
+        emplAndIncPage.startDate.sendKeys("03.05.2010");
 
 
 
@@ -59,10 +56,11 @@ public class EmplAndIncStepDefs {
 
     }
 
-    @When("I add gross monthly income")
-    public void i_add_gross_monthly_income() {
+
+    @When("I add gross monthly income {int}")
+    public void i_add_gross_monthly_income(Integer gross) {
         EmplAndIncPage emplAndIncPage = new EmplAndIncPage();
-        emplAndIncPage.grossIncome.sendKeys("5000");
+       Assert.assertEquals(String.valueOf(gross), emplAndIncPage.grossIncome.getText());
 
 
     }
@@ -75,32 +73,24 @@ public class EmplAndIncStepDefs {
     }
 
     @When("add monthly overtime {int} and monthly bonuses {int}")
-    public void add_monthly_overtime_and_monthly_bonuses(Integer int1, Integer int2) {
-
-
+    public void add_monthly_overtime_and_monthly_bonuses(Integer monthlyOvertime, Integer monthlyBonus) {
         EmplAndIncPage emplAndIncPage = new EmplAndIncPage();
-        emplAndIncPage.grossIncome.sendKeys("5000");
-        emplAndIncPage.overtime.sendKeys("100");
-        emplAndIncPage.bonuses.sendKeys("200");
+        Assert.assertEquals(String.valueOf(monthlyOvertime), emplAndIncPage.overtime.getText());
+        Assert.assertEquals(String.valueOf(monthlyBonus), emplAndIncPage.bonuses.getText());
 
+        System.out.println("Monthly overtime " + monthlyOvertime);
+        System.out.println("Monthly bonuses " + monthlyBonus);
 
     }
 
-    @Then("Borrower Total Monthly Income increase")
-    public void borrower_total_monthly_income_increase(List<String> datatable) {
-
-        List <String> str = Collections.singletonList(datatable.get(0));
+    @Then("Borrower Total Monthly Income increase from {int} to {int}")
+    public void borrower_total_monthly_income_increase_from_to(Integer gross, Integer totalGross) {
         EmplAndIncPage emplAndIncPage = new EmplAndIncPage();
-
-        Assert.assertEquals(str.get(Integer.parseInt("GROSS MONTHLY INCOME*")), emplAndIncPage.grossIncome.getText());
-        Assert.assertEquals(str.get(Integer.parseInt("MONTHLY OVERTIME")), emplAndIncPage.overtime.getText());
-        Assert.assertEquals(str.get(Integer.parseInt("MONTHLY BONUSES")), emplAndIncPage.bonuses.getText());
+        Assert.assertEquals(String.valueOf(gross), emplAndIncPage.grossIncome.getText());
+        Assert.assertEquals(String.valueOf(totalGross), emplAndIncPage.totalIncome.getText());
 
 
-
-
-
-
+    }
 
 
     }
@@ -109,5 +99,11 @@ public class EmplAndIncStepDefs {
 
 
 
-    }
+
+
+
+
+
+
+
 
