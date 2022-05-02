@@ -36,7 +36,7 @@ public class PreapprovalDefs {
     public void i_click_on_mortgage_application() {
         Preapproval preapproval = new Preapproval();
         preapproval.MortgageButton.click();
-        SeleniumUtils.waitFor(1);
+        SeleniumUtils.waitFor(2);
     }
 
     @Then("I should see the {string}")
