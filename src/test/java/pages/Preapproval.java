@@ -40,7 +40,7 @@ public class Preapproval {
     @FindBy (xpath = "//input[@name='down_payment_percent']")
     public WebElement downPaymntPercent;
 
-    @FindBy (xpath = "//select[@name='purpose_loan']")
+    @FindBy (xpath = "//select[@name='src_down_payment']")
     public WebElement optionsFinances;
 
     @FindBy(xpath = "//a[text()='Next']")
