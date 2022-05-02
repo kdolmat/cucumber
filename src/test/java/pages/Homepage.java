@@ -8,7 +8,7 @@ import utilities.Driver;
 // privet
 public class Homepage {
 
-    //c
+    
     public Homepage(){
         PageFactory.initElements(Driver.getDriver(), this);
     }
