@@ -14,25 +14,25 @@ Feature: test preapproval details
 #    When I Click on Mortgage Application and fill in preapproval details
     Then I verify with title I'm in Personal Information page
 
-  @regression
+
   Scenario: Verify PreApproval Details works
 #    Given I login duobank using email and password
 #    When I Click on Mortgage Application and fill in preapproval details
     Then I click no and fill in firs name,middle name,last name and select suffix
-  @regression
+
   Scenario: Verify PreApproval Details works
 #    Given I login duobank using email and password
 #    When I Click on Mortgage Application and fill in preapproval details
     And I click no and fill in firs name,middle name,last name and select suffix
     Then I fill in all browser information
 
-  @regression
+
   Scenario: Verify PreApproval Details works
 #    Given I login duobank using email and password
 #    When I Click on Mortgage Application and fill in preapproval details
     Then I click yes and fill in personal information and co-browser information
 
-  @regression
+
   Scenario: Verify PreApproval Details works
 #    Given I login duobank using email and password
 #    When I Click on Mortgage Application and fill in preapproval details
