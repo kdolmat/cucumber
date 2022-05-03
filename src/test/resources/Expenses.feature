@@ -10,6 +10,7 @@ Feature: Expenses
   And I click yes and fill in personal information and co-browser information
   Then I click next and make sure Im in expenses page
 
+  @smoke
  Scenario: Housing Expenses
 #  Given I am on the Expenses page
   When I am click in Rent

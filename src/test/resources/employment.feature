@@ -17,7 +17,7 @@ Feature: Employment and Income
     And I add gross monthly income 5000
     Then I can go on the next application page
 
-  @dashboard
+
     Scenario: Dashboard
 
 #    Given I am on login page
@@ -25,20 +25,20 @@ Feature: Employment and Income
     Then I should see Application Page
 
 
-  @dashboard
+ @smoke
     Scenario: Employment information
 
       When I insert my employer information
       Then I can add Another Employer
 
-  @dashboard
+  @regression
       Scenario: Borrower Gross Monthly Employment Income
 
         When I insert my employer information
         And I add gross monthly income 5000
         Then I can go on the next application page
 
-  @dashboard
+  @regression
         Scenario: Borrower Gross Monthly Employment Income with overtime and bonuses
 
           When  I add gross monthly income 5000

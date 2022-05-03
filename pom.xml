@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>ecommerce-automation-tests-bdd</artifactId>
+    <artifactId>cucumber</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -77,8 +77,8 @@
                     <testFailureIgnore>true</testFailureIgnore>
 
                     <!--                    the following 2 lines are for running feature files in parallel -->
-                    <parallel>methods</parallel>
-                    <useUnlimitedThreads>true</useUnlimitedThreads>
+<!--                    <parallel>methods</parallel>-->
+<!--                    <useUnlimitedThreads>true</useUnlimitedThreads>-->
 
                     <includes>
                         <!--                        <!– name of your Runner class-->
@@ -113,7 +113,7 @@
                         </goals>
                         <configuration>
                             <!--                        Add your project name here-->
-                            <projectName>E-commerce Project</projectName>
+                            <projectName>cucumber</projectName>
 
                             <!-- folder where the report file will be generated -->
                             <outputDirectory>${project.build.directory}/pretty-report</outputDirectory>
