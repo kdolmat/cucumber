@@ -16,7 +16,7 @@ When I insert my employer information
 And I add gross monthly income 5000
 Then I can go on the next application page
 
-
+@smoke
   Scenario: PreApproval Inquiry
 #    Given I am on the PreApproval page
     When I am clicking Yes

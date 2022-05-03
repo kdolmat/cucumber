@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 
 @CucumberOptions(
-//        tags = "@application",
+        tags = "@smoke",
 
         features = "src/test/resources",
 
@@ -17,6 +17,7 @@ import org.junit.runner.RunWith;
 
         plugin = {"pretty",
                 "html:target/built-in-report/built-in-report.html",
+                //"html:target/built-in-reports/",
                 "json:target/cucumber.json"
         }
 

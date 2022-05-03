@@ -18,7 +18,7 @@ Feature: Econsent
     Then I should be able to move to the other page
 
 
-
+@smoke
   Scenario: PreApproval Inquiry
 
     When I am filling First Name
