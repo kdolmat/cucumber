@@ -21,13 +21,15 @@ public class CreditReportStepDefs {
     @When("I am clicking Yes")
     public void i_am_clicking_yes() {
         CrediteReportPage crediteReportPage = new CrediteReportPage();
-        crediteReportPage.OrderCrediteReportCheck.sendKeys("check", Keys.ENTER);
+        Assert.assertTrue(crediteReportPage.OrderCrediteReportCheck.isSelected());
     }
     @Then("I should be able to move to the other page")
     public void i_should_be_able_to_move_to_the_other_page() {
         EconsentPage econsentPage = new EconsentPage();
-        Assert.assertTrue( econsentPage.eConsent.getText().contains("eConsent"));
+        CrediteReportPage crediteReportPage = new CrediteReportPage();
+        crediteReportPage.next.click();
 
-        Driver.quitDriver();
+//        Assert.assertTrue( econsentPage.eConsent.getText().contains("eConsent"));
+
     }
 }

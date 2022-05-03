@@ -11,11 +11,14 @@ public class ExpensesPage {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    @FindBy(xpath = "//*[@id=\"steps-uid-0-p-2\"]/div/div[1]/div/ul/li[1]/fieldset/div/label\n")
+    @FindBy(xpath = "//input[@id=\"expense1\"]")
     public WebElement RentClick;
 
-    @FindBy(xpath ="//*[@id=\"monthlyrentalpayment\"]")
+    @FindBy(xpath ="//input[@id='monthlyrentalpayment']")
     public WebElement MonthlyRentalPayment;
+
+    @FindBy(xpath = "//a[text()='Next']")
+    public WebElement next;
 
 //    @FindBy(xpath = "//*[@id=\"steps-uid-0\"]/div[3]/ul/li[2]/a")
 //    public WebElement next;

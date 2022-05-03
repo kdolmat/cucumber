@@ -11,6 +11,10 @@ public class CrediteReportPage {
     PageFactory.initElements(Driver.getDriver(), this);
     }
     private Object uid;
-    @FindBy(xpath ="//*[@id=\"steps-uid-0-p-4\"]/div/div/div/ul/li[1]/fieldset/div/label")
+
+    @FindBy(xpath ="//input[@id=\"creditreport1\"]")
     public WebElement OrderCrediteReportCheck;
+
+    @FindBy(xpath = "//a[text()='Next']")
+    public WebElement next;
 }
