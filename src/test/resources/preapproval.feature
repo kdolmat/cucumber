@@ -9,11 +9,11 @@ Feature: Preapproval
   Scenario: Verify The page
   Then I should see the "Preapproval Details"
 
-  @regression
+
   Scenario: Verify The checkboxes
     Then I want to check all boxes No
 
-  @regression
+
   Scenario Outline: Fill the info up
     Then I want to check all boxes Yes
     And I want to provide Realtors name, EPP,DPA,DPP. The following should be
@@ -25,14 +25,14 @@ Feature: Preapproval
       | John Doe | 300.000 | 90000 | 30 |
       | Jane Doe | 100.000 | 10000 | 10 |
 
-  @regression
+
   Scenario: Fill the info up
     Then I want to check all boxes Yes
     Then I want to provide "Realtors" name
     Then I want to fill "EPP","DPA","DPP"
     And I want to pick "Other type of Down Payment" and verify
 
-  @regression
+
   Scenario: Fill everything up and go to the next page
     Then I want to check all boxes Yes
     Then I want to provide "Realtor" name
