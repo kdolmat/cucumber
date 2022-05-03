@@ -25,6 +25,9 @@ public class EmplAndIncPage {
     @FindBy (id = "employername1")
     public WebElement employerName;
 
+    @FindBy(xpath = "(//input[@placeholder='Employer Name'])[2]")
+    public WebElement employer2Name;
+
     @FindBy (id = "position1")
     public  WebElement position;
 
@@ -52,8 +55,11 @@ public class EmplAndIncPage {
     @FindBy (xpath = "//div[@class=\"borrowertotalmonthlyincome\"]")
     public  WebElement totalIncome;
 
-    @FindBy (xpath = "//a[@href=\"#next\"]")
-    public WebElement nextPageButton;
+//    @FindBy (xpath = "//a[@href=\"#next\"]")
+//    public WebElement nextPageButton;
+
+    @FindBy(xpath = "//a[text()='Next']")
+    public WebElement nextp;
 
 
 }
