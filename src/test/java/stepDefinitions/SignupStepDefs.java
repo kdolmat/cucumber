@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import com.github.javafaker.Faker;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -26,10 +27,11 @@ public void i_press_the_button_sign_up() {
 public void i_create_application_adding_user_information() {
     SignupPage signupPage = new SignupPage();
 
-        signupPage.firstName.sendKeys("Bobby");
-        signupPage.lastName.sendKeys("Brown");
-        signupPage.email.sendKeys("58555@yahoo.com");
-        signupPage.password.sendKeys("1234");
+        Faker faker = new Faker();
+        signupPage.firstName.sendKeys(faker.name().firstName());
+        signupPage.lastName.sendKeys(faker.name().lastName());
+        signupPage.email.sendKeys(faker.internet().emailAddress());
+        signupPage.password.sendKeys(faker.internet().password());
         signupPage.button.click();
 
 

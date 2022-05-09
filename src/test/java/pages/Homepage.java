@@ -1,11 +1,12 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
-// privet
+import utilities.PropertyReader;
+
+
 public class Homepage {
 
 
@@ -13,11 +14,21 @@ public class Homepage {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    @FindBy (xpath = "//input[@type = 'email']")
+    @FindBy (xpath = "//input[@type='email']")
     public WebElement email;
 
-    @FindBy (xpath = "//input[@type = 'password']")
+    @FindBy (xpath = "//input[@type='password']")
     public WebElement password;
+
+    @FindBy(xpath = "//button[@type='submit']")
+    public WebElement login;
+
+    public void login(){
+
+        email.sendKeys(PropertyReader.getProperty("email"));
+        password.sendKeys(PropertyReader.getProperty("pass"));
+        login.click();
+    }
 
 
 
