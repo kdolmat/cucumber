@@ -69,6 +69,7 @@ public class EconsetStepdefs {
 
             new CrediteReportPage().next.click();
 
+
         }
 
         @And("I click save")

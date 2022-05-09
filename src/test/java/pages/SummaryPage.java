@@ -13,5 +13,10 @@ public class SummaryPage {
     }
     @FindBy(xpath ="(//a[@role='menuitem'])[3]")
     public WebElement econsent;
+
+    @FindBy (xpath = "//a[@href=\"#finish\"]")
+    public WebElement buttonSave;
+
+
     }
 
