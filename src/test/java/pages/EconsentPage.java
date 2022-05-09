@@ -32,6 +32,9 @@ public class EconsentPage {
 //    @FindBy(xpath="//*[@id=\"steps-uid-0\"]/div[3]/ul/li[2]/a")
 //    public WebElement next;
 
+    @FindBy (xpath = "//label[@for=\"agree\"]")
+    public WebElement agreeButton;
+
 
 
 }
