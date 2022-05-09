@@ -28,6 +28,7 @@ public class PersonalInformation {
         loginPage.password.sendKeys(PropertyReader.getProperty("pass"));
         SignupPage signupPage = new SignupPage();
         signupPage.login.click();
+        Driver.getDriver().findElement(By.xpath("//input[@id='employername2']")).sendKeys("AAAA");
 
     }
 
