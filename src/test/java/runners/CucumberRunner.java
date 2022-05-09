@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 
 @CucumberOptions(
-        tags = "@temp",
+        tags = "@smoke",
 
         features = "src/test/resources",
 
