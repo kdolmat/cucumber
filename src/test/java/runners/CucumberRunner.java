@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
 
 
-       tags = "@smoke",
+       tags = "@list",
 
 
         features = "src/test/resources",
@@ -24,7 +24,7 @@ import org.junit.runner.RunWith;
                 "json:target/cucumber.json"
         }
 
-        
+
        // ,dryRun = true             // step definition execution is skipped, used for generating snippets without running the code
 
 )
