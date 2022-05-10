@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import stepDefinitions.ApplicationFormPage;
 import utilities.Driver;
 
 import java.time.Duration;
@@ -63,10 +64,7 @@ public class Preapproval {
     @FindBy(xpath = "//span[text()='Application List']")
     public WebElement applicationListBttn;
 
-    @FindBy(xpath = "//td[text()='260175']//following-sibling::td//a")
-    public WebElement viewDetails;
-
-    @FindBy(xpath = "//td[text()='260175']")
+    @FindBy()
     public WebElement loan;
 
     public String loanExp="260175";
