@@ -14,7 +14,9 @@ Feature: Application Match
 
     And click "Next" and verify that next page contains "Personal Information"
     And I click yes and fill in personal information and co-browser information
-    Then I click next and make sure Im in expenses page
+    Then I want to set the name
+     |Name|
+     Then I click next and make sure Im in expenses page
     When I am click in Rent
     Then I am filling Monthly Rental Payment or First Mortagage
     Then I should see the next page Employment and Income
@@ -32,6 +34,7 @@ Feature: Application Match
 
     When I go on applications list page
     Then I click on the first application and verify that the data matches with what I put in
+
      Examples:
        | Realtor | ESTIMATED PURCHASE PRICE | DOWN PAYMENT AMOUNT | DOWN PAYMENT PERCENTAGE |
        | Bruce Banner | 346900 | 86725 | 25 |
