@@ -17,7 +17,7 @@ public class ApplicationList {
 
     @Given("I want to fill in all Mortage Application")
     public void i_want_to_fill_in_all_mortage_application() {
-
+//comment
         Driver.getDriver().get(PropertyReader.getProperty("url"));
 
         LoginPage loginPage = new LoginPage();
