@@ -52,6 +52,7 @@ public class EconsetStepdefs {
             EconsentPage econsentPage = new EconsentPage();
            // econsentPage.agree.click();
            // SeleniumUtils.jsClick(econsentPage.agree);
+            SeleniumUtils.waitFor(2);
             Actions action = new Actions(Driver.getDriver());
             action.moveToElement(econsentPage.agree).doubleClick().perform();
 

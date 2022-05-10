@@ -16,11 +16,16 @@ Feature: Buttons
     And I add gross monthly income 5000
     Then I can go on the next application page
     Then I should be able to move to the other page
+    When I am filling First Name
+    Then I am filling Last Name
+    And I am filling Email
+    Then I am clicking Agree on the eConsent agreement
     And I should be in Summary page
 
 
-@smoke
-    Scenario:
+@list
+    Scenario: Check all buttons
+
       Given On the Summary page I save my application
       When I go to Application list
       Then I should be able to check all buttons
