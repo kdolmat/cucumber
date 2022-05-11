@@ -38,7 +38,7 @@ public class TestJDBC {
 //            resultSet.next();
 //        }
         DBUtility.createConnection();
-        String query = "select * from users limit 10";
+        String query = "select * from tbl_mortagage limit 10;";
         List<List<Object>> queryR = DBUtility.getQueryResultAsListOfLists(query);
         for (List<Object> objects : queryR) {
             System.out.println(objects);
@@ -51,7 +51,7 @@ public class TestJDBC {
         for (Map<String,Object> objects : queryM) {
             System.out.println(objects);
         }
-        System.out.println(queryM.get(1).get("firstname"));
+        System.out.println(queryM.get(1).get("last_name"));
         System.out.println(DBUtility.getColumnNames(query));
     }
 }
