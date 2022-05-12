@@ -50,6 +50,12 @@ public class Preapproval {
     @FindBy(xpath = "//h6[text()='Personal Information']")
     public WebElement pI;
 
+    @FindBy(xpath = "(//tr//td)[13]")
+    public WebElement updEmail;
+
+    @FindBy(xpath = "(//tr//td)[2]")
+    public WebElement realtorNameDynamic;
+
 
 
 
