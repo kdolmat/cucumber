@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 import com.github.javafaker.Faker;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -11,12 +12,21 @@ import pages.LoginPage;
 import pages.PersonalPage;
 import pages.Preapproval;
 import pages.SignupPage;
+import utilities.DBUtility;
 import utilities.Driver;
 import utilities.PropertyReader;
 import utilities.SeleniumUtils;
 
+import java.util.List;
+import java.util.Map;
+
 
 public class PersonalInformation {
+
+    String b_firstName;
+    String b_middleName;
+    String b_lastName;
+
 
 
     @Given("I login duobank using email and password")
@@ -51,25 +61,46 @@ public class PersonalInformation {
         Assert.assertTrue(Driver.getDriver().getTitle().contains("Loan Application"));
     }
 
+
+    List<List<String>> borrow;
     @Then("I click no and fill in firs name,middle name,last name and select suffix")
-    public void i_click_no_and_fill_in_firs_name_middle_name_last_name_and_select_suffix() {
+    public void i_click_no_and_fill_in_firs_name_middle_name_last_name_and_select_suffix(List<List<String>> borrower) {
 
-        String firstName = new Faker().name().firstName();
-        String middleName = new Faker().name().nameWithMiddle();
-        String lastName = new Faker().name().lastName();
+        borrow = borrower;
+//        String firstName = new Faker().name().firstName();
+//        String middleName = new Faker().name().nameWithMiddle();
+//        String lastName = new Faker().name().lastName();
+        PersonalPage personalPage =new PersonalPage();
+        personalPage.firstName.clear();
+        personalPage.middleName.clear();
+        personalPage.lastName.clear();
 
+       // Faker faker = new Faker();
 
-        PersonalPage personalPage = new PersonalPage();
-
-
-        personalPage.firstName.sendKeys(firstName);
+        personalPage.firstName.sendKeys(borrower.get(1).get(0));
         SeleniumUtils.waitFor(3);
-        personalPage.middleName.sendKeys(middleName);
-        personalPage.lastName.sendKeys(lastName);
+        personalPage.middleName.sendKeys(borrower.get(1).get(1));
+        personalPage.lastName.sendKeys(borrower.get(1).get(2));
         personalPage.clicksuffix.click();
 
+        b_firstName = borrower.get(1).get(0);
+        b_middleName = borrower.get(1).get(1);
+        b_lastName = borrower.get(1).get(2);
 
-        personalPage.suffix.sendKeys("Jr." + Keys.ENTER);
+//
+//        personalPage.suffix.sendKeys("Jr." + Keys.ENTER);
+//
+//        String query = "Select * from tbl_mortagage where b_firstName = '"+b_firstName+"'";
+//        System.out.println(query);
+//
+//        List<Map<String, Object>> listOfmaps = DBUtility.getQueryResultListOfMaps(query);
+//
+//        Map<String, Object> map = listOfmaps.get(0);
+//
+//       // Assert.assertEquals(b_firstName, map.get(firstName));
+//        Assert.assertEquals(expectedMiddle, map.get(b_middleName));
+//        Assert.assertEquals(expectedLast, map.get(b_lastName));
+
 
 
 
@@ -163,4 +194,15 @@ public class PersonalInformation {
 
     }
 
+    @And("I verify Borrower name from DB")
+    public void iVerifyBorrowerNameFromDB() {
+
+        String query = "select b_firstName, b_middleName, b_lastName from tbl_mortagage \n" +
+                "where b_firstName = 'Alex' \n" +
+                "and b_middleName ='Jason' and b_lastName = 'Davidson'";
+        List<List<Object>> actual = DBUtility.getQueryResultAsListOfLists(query);
+
+        Assert.assertEquals(borrow.get(1), actual.get(0));
+
+    }
 }
