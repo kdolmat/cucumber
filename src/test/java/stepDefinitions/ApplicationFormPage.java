@@ -27,8 +27,16 @@ public class ApplicationFormPage {
     public void iGoOnApplicationsListPage() {
         Preapproval preapproval = new Preapproval();
 
+
         SeleniumUtils.waitFor(2);
         preapproval.applicationListBttn.click();
+
+        SeleniumUtils.waitFor(2);
+        preapproval.applicationListBttn.click();
+
+
+
+
         SeleniumUtils.waitForClickablility(preapproval.applicationListBttn,5);
         preapproval.applicationListBttn.click();
     }

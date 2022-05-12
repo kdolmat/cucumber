@@ -24,6 +24,33 @@ public class Hooks {
         Driver.getDriver().manage().window().maximize();
 //        Driver.getDriver().manage().deleteAllCookies();
 
+
+
+    }
+
+
+    @Before ("@db")
+    public void setupDB(){
+
+        DBUtility.createConnection();
+
+    }
+
+
+//    @Before ("@module2")   // the before logic that runs before all scenarios tagged with @module2
+//    public void setup2(){
+//
+//        Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+//        Driver.getDriver().manage().window().maximize();
+////        Driver.getDriver().manage().deleteAllCookies();
+//
+//
+//
+//    }
+
+    @After ("@db")
+    public void tearDownDb(){
+        DBUtility.close();
     }
 
     @Before
@@ -36,6 +63,7 @@ public class Hooks {
 
         DBUtility.close();
     }
+
 
 
     @After
