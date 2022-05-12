@@ -76,8 +76,9 @@ public class EconsetStepdefs {
         @And("I click save")
     public void save(){
         SummaryPage summaryPage = new SummaryPage();
-        summaryPage.econsent.click();
+
         SeleniumUtils.waitFor(2);
+            summaryPage.econsent.click();
         }
 
 }

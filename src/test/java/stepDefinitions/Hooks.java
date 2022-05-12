@@ -23,40 +23,20 @@ public class Hooks {
         Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         Driver.getDriver().manage().window().maximize();
 //        Driver.getDriver().manage().deleteAllCookies();
-        //
 
     }
 
-//    @Before(@db)
-    public void setupDB(){}
+    @Before
+    public void setupDB(){
+        DBUtility.createConnection();
+    }
 
-//    @After(@db)
+    @After
     public void tearDownDB(){
+
         DBUtility.close();
     }
 
-//    @Before ("@module2")   // the before logic that runs before all scenarios tagged with @module2
-//    public void setup2(){
-//
-//        Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-//        Driver.getDriver().manage().window().maximize();
-////        Driver.getDriver().manage().deleteAllCookies();
-//
-//
-//
-//    }
-
-
-//    @After("@application")
-//    public void voidLoopTeardown(){
-//    Preapproval preapproval = new Preapproval();
-//
-//   if(preapproval.isClickable()){
-//       Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-//       Driver.getDriver().manage().window().maximize();
-//
-//}
-//}
 
     @After
     public void tearDown(Scenario scenario){
