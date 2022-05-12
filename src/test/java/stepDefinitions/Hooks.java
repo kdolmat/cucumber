@@ -16,21 +16,19 @@ import java.time.Duration;
 public class Hooks {
 
 
-
     @Before
-    public void setup(){
+    public void setup() {
 
         Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         Driver.getDriver().manage().window().maximize();
 //        Driver.getDriver().manage().deleteAllCookies();
 
 
-
     }
 
 
-    @Before ("@db")
-    public void setupDB(){
+    @Before("@db")
+    public void setupDB() {
 
         DBUtility.createConnection();
 
@@ -48,28 +46,15 @@ public class Hooks {
 //
 //    }
 
-    @After ("@db")
-    public void tearDownDb(){
+    @After("@db")
+    public void tearDownDb() {
         DBUtility.close();
     }
 
-    @Before
-    public void setupDB(){
-        DBUtility.createConnection();
-    }
-
     @After
-    public void tearDownDB(){
+    public void tearDown(Scenario scenario) {
 
-        DBUtility.close();
-    }
-
-
-
-    @After
-    public void tearDown(Scenario scenario){
-
-        if(scenario.isFailed()){
+        if (scenario.isFailed()) {
             TakesScreenshot ts = (TakesScreenshot) Driver.getDriver();
             byte[] screenshotAs = ts.getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshotAs, "image/png", "failed");
