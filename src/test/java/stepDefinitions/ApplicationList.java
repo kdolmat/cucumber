@@ -29,6 +29,7 @@ public class ApplicationList {
         preapproval.MortgageButton.click();
         preapproval.realtorName.sendKeys("John Doe");
 
+
         preapproval.estPurchPrice.sendKeys("450000");
         preapproval.downPaymntPercent.sendKeys("5");
         preapproval.nextButton.click();
@@ -105,14 +106,15 @@ public class ApplicationList {
         action.moveToElement(econsentPage.agree).doubleClick().perform();
         new CrediteReportPage().next.click();
         SummaryPage summaryPage = new SummaryPage();
-        //summaryPage.econsent.click();
-
         SeleniumUtils.waitFor(4);
+        summaryPage.econsent.click();
+
+
 
 
     }
 
-    @Then("click Application list to find Borrower name")
+    @Then("click Application list")
     public void click_application_list_to_find_borrower_name() {
 
         Application application = new Application();

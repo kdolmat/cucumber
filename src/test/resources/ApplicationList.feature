@@ -1,6 +1,6 @@
 
 Feature: test preapproval details
-
+  @list
   Scenario: Mortgage Application
     Given I want to fill in all Mortage Application
     Then click Application list
