@@ -26,12 +26,10 @@ public class ApplicationFormPage {
     @When("I go on applications list page")
     public void iGoOnApplicationsListPage() {
         Preapproval preapproval = new Preapproval();
-<<<<<<< HEAD
         SeleniumUtils.waitFor(2);
         preapproval.applicationListBttn.click();
-    }
-=======
->>>>>>> 712a0cb0da238a243f137e1e3f0e4edd1fb0cd04
+
+
 
         SeleniumUtils.waitForClickablility(preapproval.applicationListBttn,5);
         preapproval.applicationListBttn.click();
