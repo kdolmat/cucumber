@@ -10,48 +10,40 @@ import java.util.Map;
 
 public class TestJDBC {
     public static void main(String[] args) throws SQLException {
-        // jdbc:{driverType}:{urlToBandSchema}
-//        String url = "jdbc:mysql://db-duotech.cc652zs7kmja.us-east-2.rds.amazonaws.com/duotify";
-//       Connection connection= DriverManager.getConnection(url,"duotech","duotech2021");
-//        Statement statement = connection.createStatement();
-//        ResultSet resultSet = statement.executeQuery("select * from users limit 10");
-//        resultSet.next();
-//        System.out.println(resultSet.getString(3));//indexes are 1 based count
-//        System.out.println(resultSet.getString("username"));
-//        while (resultSet.next()){
-//            System.out.println(resultSet.getString("username"));
-//        }
-//        ResultSetMetaData metaData = resultSet.getMetaData();
-//        System.out.println(metaData.getColumnCount());
-//        System.out.println(metaData.getColumnName(2));
-//
-//        int count = metaData.getColumnCount();
-//        resultSet.last();
-//        resultSet.first();
-//        int rowNo = resultSet.getRow();
-//        System.out.println(rowNo);
-//        for (int i = 0; i < rowNo; i++) {
-//            for (int j = 0; j < count; j++) {
-//                System.out.println(resultSet.getString(j)+"\t");
-//            }
-//            System.out.println();
-//            resultSet.next();
-//        }
         DBUtility.createConnection();
-        String query = "select * from users limit 10";
-        List<List<Object>> queryR = DBUtility.getQueryResultAsListOfLists(query);
-        for (List<Object> objects : queryR) {
+        String query = "select * from tbl_mortagage";
+        List<List<Object>> queryResultAsListOfLists = DBUtility.getQueryResultAsListOfLists(query);
+
+        //list of lists(shows the inner list)
+        for (List<Object> objects : queryResultAsListOfLists) {
             System.out.println(objects);
         }
-        System.out.println(queryR.get(1).get(2));
-        String o = (String) (queryR.get(1).get(2));
+        //list of lists(shows the inner list, accessed a prticular elemnt)
+        System.out.println(queryResultAsListOfLists.get(1).get(2));
+        String o = (String) (queryResultAsListOfLists.get(1).get(2));
 
-
-        List<Map<String,Object>> queryM = DBUtility.getQueryResultListOfMaps(query);
-        for (Map<String,Object> objects : queryM) {
+        //list of maps(shows the key)
+        List<Map<String, Object>> queryM = DBUtility.getQueryResultListOfMaps(query);
+        for (Map<String, Object> objects : queryM) {
             System.out.println(objects);
         }
-        System.out.println(queryM.get(1).get("firstname"));
+
+        //list of maps(shows the key, accessed a prticular elemnt)
+        System.out.println(queryM.get(1).get("b_lastName"));
+
+        //gets column names, not values
         System.out.println(DBUtility.getColumnNames(query));
+
+        DBUtility.updateQuery("UPDATE tbl_mortagage SET realtor_info = 'test' WHERE b_lastName='Muhammad';");
+        query = "select * from tbl_mortagage where realtor_info = 'test';";
+        queryResultAsListOfLists = DBUtility.getQueryResultAsListOfLists(query);
+
+        for (List<Object> eachRow : queryResultAsListOfLists) {
+            System.out.println(eachRow);
+        }
+
+
+
+
     }
 }

@@ -109,6 +109,8 @@ public class PreapprovalDefs {
         preapproval.nextButton.click();
         SeleniumUtils.waitFor(2);
         Assert.assertEquals(personalInfo,preapproval.pI.getText());
+        System.out.println(personalInfo + " personal info");
+        System.out.println(preapproval.pI.getText()+" get text");
     }
 
     @Then("I want to fill {string},{string},{string}")

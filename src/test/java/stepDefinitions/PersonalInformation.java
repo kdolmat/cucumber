@@ -143,7 +143,7 @@ public class PersonalInformation {
         String email = new Faker().internet().emailAddress();
 
         personalPage.firstName.sendKeys(firstName);
-        SeleniumUtils.waitFor(3);
+        SeleniumUtils.waitFor(1);
         personalPage.middleName.sendKeys(middleName);
         personalPage.lastName.sendKeys(lastName);
         personalPage.clicksuffix.click();

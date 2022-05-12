@@ -10,7 +10,11 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
 
 
+<<<<<<< HEAD
       tags = "@db",
+=======
+       tags = "@db",
+>>>>>>> f54008acc53cae50c9fddfe99d4267044dc81065
 
 
         features = "src/test/resources",
@@ -26,7 +30,11 @@ import org.junit.runner.RunWith;
 
 
 
+<<<<<<< HEAD
     // ,dryRun = true             // step definition execution is skipped, used for generating snippets without running the code
+=======
+   //  ,dryRun = true             // step definition execution is skipped, used for generating snippets without running the code
+>>>>>>> f54008acc53cae50c9fddfe99d4267044dc81065
 
 
 

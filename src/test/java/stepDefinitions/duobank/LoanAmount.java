@@ -1,23 +1,27 @@
-package stepDefinitions;
+package stepDefinitions.duobank;
 
 import com.github.javafaker.Faker;
-import io.cucumber.java.bs.A;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import org.junit.Assert;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import pages.*;
+import utilities.DBUtility;
 import utilities.Driver;
 import utilities.PropertyReader;
 import utilities.SeleniumUtils;
 
-public class ApplicationList {
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
-    @Given("I want to fill in all Mortage Application")
-    public void i_want_to_fill_in_all_mortage_application() {
-//comment
+public class LoanAmount {
+
+    @Given("I want to login")
+    public void i_want_to_login() {
+
         Driver.getDriver().get(PropertyReader.getProperty("url"));
 
         LoginPage loginPage = new LoginPage();
@@ -26,11 +30,20 @@ public class ApplicationList {
         SignupPage signupPage = new SignupPage();
         signupPage.login.click();
         Preapproval preapproval = new Preapproval();
+
+
+
+    }
+    @When("I fill in loan application")
+    public void i_fill_in_loan_application() {
+
+
+        Preapproval preapproval = new Preapproval();
         preapproval.MortgageButton.click();
         preapproval.realtorName.sendKeys("John Doe");
 
 
-        preapproval.estPurchPrice.sendKeys("450000");
+        preapproval.estPurchPrice.sendKeys("850000");
         preapproval.downPaymntPercent.sendKeys("5");
         preapproval.nextButton.click();
         String firstName = new Faker().name().firstName();
@@ -111,48 +124,40 @@ public class ApplicationList {
 
 
 
-
     }
+    @Then("I should be to on Application list")
+    public void i_should_be_to_on_application_list() {
 
-    @Then("click Application list")
-    public void click_application_list_to_find_borrower_name() {
+
 
         Application application = new Application();
         application.applicationList.click();
         SeleniumUtils.waitFor(4);
 
+    }
+    @Then("I should to be able to verify the loan amount details in the datable")
+    public void i_should_to_be_able_to_verify_the_loan_amount_details_in_the_datable() {
+
+
+
+       String query= "Select *from tbl_mortagage where total_loan_amount='807500'";
+
+        System.out.println(query);
+        List<Map<String, Object>> listofmaps = DBUtility.getQueryResultListOfMaps(query);
+
+        System.out.println(listofmaps);
+
 
     }
 
-    @Given("I want to login and click to Application list")
-    public void i_want_to_login_and_click_to_application_list() {
-        Driver.getDriver().get(PropertyReader.getProperty("url"));
-        LoginPage loginPage = new LoginPage();
-        loginPage.emailAddress.sendKeys(PropertyReader.getProperty("email"));
-        loginPage.password.sendKeys(PropertyReader.getProperty("pass"));
-        SignupPage signupPage = new SignupPage();
-        signupPage.login.click();
-        Application application = new Application();
-        application.applicationList.click();
-        SeleniumUtils.waitFor(3);
+    @Then("I can delete loan amount")
+    public void i_can_delete_loan_amount() throws SQLException {
+
+        String query = "delete from tbl_mortagage where total_loan_amount='12222';";
+
+        DBUtility.updateQuery(query);
+
 
     }
 
-    @Then("I can find in search button Borrower name")
-    public void i_can_find_in_search_button_borrower_name() {
-
-
-        Application application = new Application();
-        application.searchButton.sendKeys("Shelby");
-         Assert.assertEquals("Shelby Mrs. Ena Beier Schulist McCullough",application.match.getText());
-
-
-
-
-
-
-
-
-        SeleniumUtils.waitFor(3);
-    }
 }

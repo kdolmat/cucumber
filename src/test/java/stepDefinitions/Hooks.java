@@ -23,17 +23,27 @@ public class Hooks {
         Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         Driver.getDriver().manage().window().maximize();
 //        Driver.getDriver().manage().deleteAllCookies();
-        //
+
+
 
 
 
     }
+
+<<<<<<< HEAD
+    @Before ("@db")
+    public void setupDB(){
+
+        DBUtility.createConnection();
+
+=======
 
     @Before ("@db")
     public void setupDB(){
 
         DBUtility.createConnection();
 
+>>>>>>> f54008acc53cae50c9fddfe99d4267044dc81065
     }
 
 
@@ -52,6 +62,22 @@ public class Hooks {
     public void tearDownDb(){
         DBUtility.close();
     }
+<<<<<<< HEAD
+=======
+
+    @Before
+    public void setupDB(){
+        DBUtility.createConnection();
+    }
+
+    @After
+    public void tearDownDB(){
+
+        DBUtility.close();
+    }
+
+
+>>>>>>> f54008acc53cae50c9fddfe99d4267044dc81065
 
     @After
     public void tearDown(Scenario scenario){
