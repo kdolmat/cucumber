@@ -30,20 +30,19 @@ public class Hooks {
 
     }
 
-<<<<<<< HEAD
-    @Before ("@db")
-    public void setupDB(){
-
-        DBUtility.createConnection();
-
-=======
 
     @Before ("@db")
     public void setupDB(){
 
         DBUtility.createConnection();
 
->>>>>>> f54008acc53cae50c9fddfe99d4267044dc81065
+
+    @Before ("@db")
+    public void setupDB(){
+
+        DBUtility.createConnection();
+
+
     }
 
 
@@ -62,8 +61,7 @@ public class Hooks {
     public void tearDownDb(){
         DBUtility.close();
     }
-<<<<<<< HEAD
-=======
+
 
     @Before
     public void setupDB(){
@@ -77,7 +75,7 @@ public class Hooks {
     }
 
 
->>>>>>> f54008acc53cae50c9fddfe99d4267044dc81065
+
 
     @After
     public void tearDown(Scenario scenario){
