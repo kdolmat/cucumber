@@ -143,7 +143,7 @@ public class ApplicationFormPage {
 
 
 
-
+//TDD methods Sprint 5
     public static void i_log_in(String email, String password) {
         Driver.getDriver().get(PropertyReader.getProperty("url"));
         Homepage homepage = new Homepage();
