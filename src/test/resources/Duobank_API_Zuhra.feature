@@ -1,5 +1,5 @@
 Feature: Verify API of Duobank application
-  @Duobank
+  @api
    Scenario: Check API of Duobank application
 
      Given I am on the homepage to login to the request

@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 
 
 
-      tags = "@db",
+      tags = "@api",
 
 
 
@@ -23,7 +23,7 @@ import org.junit.runner.RunWith;
 
         plugin = {"pretty",
                 "html:target/built-in-report/built-in-report.html",
-                //"html:target/built-in-reports/",
+                "html:target/built-in-reports/",
                 "json:target/cucumber.json",
                 "rerun:target/failed.txt"
 
