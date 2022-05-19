@@ -28,13 +28,6 @@ public class LoanApplicationPage{
 
 
 
-
-
-    @FindBy(xpath="//a[@class='btn btn-info']")
-    public WebElement ViewDetails;
-
-
-
     @FindBy(xpath ="(//h4[@class='card-title'])[2]")
     public WebElement ApplicationList1;
 

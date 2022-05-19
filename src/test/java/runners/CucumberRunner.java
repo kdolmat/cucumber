@@ -13,7 +13,6 @@ import org.junit.runner.RunWith;
 
       tags = "@db",
 
-       tags = "@db",
 
 
 
@@ -25,15 +24,16 @@ import org.junit.runner.RunWith;
         plugin = {"pretty",
                 "html:target/built-in-report/built-in-report.html",
                 //"html:target/built-in-reports/",
-                "json:target/cucumber.json"
+                "json:target/cucumber.json",
+                "rerun:target/failed.txt"
+
+                // ,dryRun = true             // step definition execution is skipped, used for generating snippets without running the code
         }
 
 
 
 
-    // ,dryRun = true             // step definition execution is skipped, used for generating snippets without running the code
 
-   //  ,dryRun = true             // step definition execution is skipped, used for generating snippets without running the code
 
 
 
