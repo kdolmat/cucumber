@@ -1,7 +1,7 @@
 Feature: Duobank features
 
 
-@api
+@regression
   Scenario: API to UI flow
 
     Given The base URI is set to "http://qa-duobank.us-east-2.elasticbeanstalk.com/api"
