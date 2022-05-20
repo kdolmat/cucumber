@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 
 
 
-      tags = "@api",
+      tags = "@api or regression",
 
 
 

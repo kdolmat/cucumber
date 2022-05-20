@@ -3,7 +3,7 @@ Feature: Login
   Background:
     Given The base URI is set to "http://qa-duobank.us-east-2.elasticbeanstalk.com/api"
 
-@api
+@regression
   Scenario: API to UI login flow
 
    # When I am on login page
