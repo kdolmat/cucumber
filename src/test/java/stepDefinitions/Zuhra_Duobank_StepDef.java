@@ -20,19 +20,15 @@ public class Zuhra_Duobank_StepDef {
 
     String email;
     String password;
+    String FirstName;
+    String LastName;
     RequestSpecification requestSpecification;
     Response response;
-
-
-
-
-
-
 
     @Given("I am on the homepage to login to the request")
     public void i_am_on_the_homepage_to_login_to_the_request() {
 
-         Driver.getDriver().get(PropertyReader.getProperty("url2"));
+        Driver.getDriver().get(PropertyReader.getProperty("url3"));
 
     }
 
@@ -40,27 +36,26 @@ public class Zuhra_Duobank_StepDef {
     public void POST() {
 
 
-   email=  new Faker().internet().emailAddress();
-   password = new Faker().internet().password();
+        email=  new Faker().internet().emailAddress();
+        password = new Faker().internet().password();
 
         requestSpecification = given().
-                                  body("{\n" +
-                                         "\"first_name\" : \"Joe\",\n" +
-                                         "\"last_name\" : \"Doe\",\n" +
-                                         "\"email\" : \"" + email + "\",\n" +
-                                         "\"password\" : \"" + password + "\"\n" +
-                                          "\n" +
-                                         "}");
-
+                body("{\n" +
+                        "\"first_name\" : \""+FirstName+"\",\n" +
+                        "\"last_name\" : \""+LastName+"\",\n" +
+                        "\"email\" : \"" + email + "\",\n" +
+                        "\"password\" : \"" + password + "\"\n" +
+                        "\n" +
+                        "}");
 
     }
     @When("I send a POST request to endpoint {string}")
     public void EndPoint(String endpoint) {
 
 
-        response = requestSpecification.when().log().all().
+        response = requestSpecification.
+                when().log().all().
                 post(endpoint);
-
 
     }
     @Then("The status code should be {int} and response payload should contain a message {string}")
@@ -70,11 +65,7 @@ public class Zuhra_Duobank_StepDef {
                 statusCode(status).
                 body("message", equalTo(message));
 
-
-
     }
-
-
 
     @When("I enter the same credentials sent by API request")
     public void i_enter_the_same_credentials_sent_by_api_request() {
@@ -83,16 +74,11 @@ public class Zuhra_Duobank_StepDef {
 
     }
     @Then("I should be able to login")
-    public void i_should_be_able_to_login() {
+    public void login() {
         Assert.assertTrue(Driver.getDriver().getTitle().contains("Loan Application"));
 
         Driver.getDriver().quit();
     }
-
-
-
-
-
 
 
 }
