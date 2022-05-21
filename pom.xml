@@ -75,25 +75,32 @@
             <scope>test</scope>
         </dependency>
 
-
-
-
-
-
-
-
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-    <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>8.0.29</version>
-    </dependency>
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.testng/testng &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.testng</groupId>-->
+<!--            <artifactId>testng</artifactId>-->
+<!--            <version>7.5</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+        <!--ABOVE IS NEEDED FOR TESTNG-->
 
     </dependencies>
 
 
     <build>
         <plugins>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-surefire-plugin</artifactId>-->
+<!--                <version>3.0.0-M6</version>-->
+<!--                <configuration>-->
+<!--                    <suiteXmlFiles>-->
+<!--                        <suiteXmlFile>${file}</suiteXmlFile>-->
+<!--                    </suiteXmlFiles>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--ABOVE IS NEEDED FOR TESTNG-->
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -102,13 +109,14 @@
                     <testFailureIgnore>true</testFailureIgnore>
 
                     <!--                    the following 2 lines are for running feature files in parallel -->
-<!--                    <parallel>methods</parallel>-->
-<!--                    <useUnlimitedThreads>true</useUnlimitedThreads>-->
+                    <!--                    <parallel>methods</parallel>-->
+                    <!--                    <useUnlimitedThreads>true</useUnlimitedThreads>-->
 
                     <includes>
                         <!--                        <!– name of your Runner class-->
                         <!--suppress UnresolvedMavenProperty -->
                         <include>**/*CucumberRunner.java</include>
+                        <include>**/*FailedScenariosRunner.java</include>
 
 
                         <!--                           runner class to run feature in parallel   -->
@@ -138,8 +146,7 @@
                         </goals>
                         <configuration>
                             <!--                        Add your project name here-->
-                            <projectName>cucumber</projectName>
-
+                            <projectName>E-commerce Project</projectName>
                             <!-- folder where the report file will be generated -->
                             <outputDirectory>${project.build.directory}/pretty-report</outputDirectory>
                             <!-- folder where it looks for json file to use -->
@@ -148,15 +155,10 @@
                                 <!-- name of the json file you want to use to generate the report -->
                                 <param>**/*cucumber.json</param>
                             </jsonFiles>
-
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
-
-
-
         </plugins>
     </build>
 

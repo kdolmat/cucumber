@@ -2,6 +2,7 @@ package stepDefinitions;
 
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -9,10 +10,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.PersonalPage;
-import pages.Preapproval;
+import pages.*;
 import utilities.DBUtility;
 import utilities.Driver;
+import utilities.PropertyReader;
 import utilities.SeleniumUtils;
 
 import java.sql.SQLException;
@@ -136,4 +137,32 @@ public class ApplicationFormPage {
         Assert.assertEquals(updated,preapproval.updEmail.getText());
 
     }
+
+
+
+
+
+
+//TDD methods Sprint 5
+    public static void i_log_in(String email, String password) {
+        Driver.getDriver().get(PropertyReader.getProperty("url"));
+        Homepage homepage = new Homepage();
+        homepage.email.sendKeys(email);
+        homepage.password.sendKeys(password+Keys.ENTER);
+        Driver.quitDriver();
+    }
+
+   public static void i_press_the_button_sign_up(String f, String l,String e,String p) {
+       Driver.getDriver().get(PropertyReader.getProperty("url"));
+        SignupPage signupPage = new SignupPage();
+        signupPage.SignupWindow.click();
+       signupPage.firstName.sendKeys(f);
+       signupPage.lastName.sendKeys(l);
+       signupPage.email.sendKeys(e);
+       signupPage.password.sendKeys(p);
+       signupPage.button.click();
+       Driver.quitDriver();
+    }
+
+
 }
